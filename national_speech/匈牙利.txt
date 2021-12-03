@@ -1,0 +1,11 @@
+Tisztelt {0}!
+
+Nagyon elnézést kérünk a kellemetlenségért.
+
+Rendelésszám: {1}
+Nyomon követési szám: {2}
+Megrendelését kiszállították a rendeltetési helyre, Ön volt az, aki megtagadta a csomag átvételét? Kérjük, válaszoljon nekünk! Köszönjük!
+
+Várom, hogy hamarosan halljunk.
+
+Üdvözlettel,
