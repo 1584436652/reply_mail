@@ -55,7 +55,7 @@ class ZendeskMail(Mail):
         try:
             # 发邮件页面
             self.driver.get(self.filters_url)
-            time.sleep(4)
+            time.sleep(3)
             # 添加
             self.wait.until(
                 EC.presence_of_element_located((By.ID, "mn_1"))).send_keys(kwargs["contact_email"])
@@ -80,7 +80,7 @@ class ZendeskMail(Mail):
             time.sleep(1)
             self.wait.until(
                 EC.element_to_be_clickable((By.XPATH, '//*[@id="downshift-5-item-1"]/div'))).click()
-            time.sleep(1)
+            time.sleep(3)
             # 标题
             self.wait.until(
                 EC.presence_of_element_located(
@@ -98,7 +98,15 @@ class ZendeskMail(Mail):
         # except UnexpectedAlertPresentException:
         #     time.sleep(2)
         except TimeoutException as e:
-            print(f'{kwargs["title"]}有元素没查找到，继续当前信息发送)')
+            time.sleep(1)
+            self.wait.until(
+                EC.element_to_be_clickable((By.XPATH,
+                                            '//header[@id="branding_header"]//button[@data-test-id="close-button"]//*[name()="svg"]'))).click()
+            time.sleep(2)
+            self.wait.until(
+                EC.element_to_be_clickable((By.XPATH, '//div[@class="modal-footer"]//button[@class="btn btn-primary"]'))).click()
+
+            print(f'{kwargs["title"]}有元素没查找到，继续当前信息发送')
             raise e
 
     def add_information(self):

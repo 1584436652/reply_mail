@@ -1,3 +1,5 @@
+import datetime
+
 from openpyxl import load_workbook
 
 
@@ -6,7 +8,7 @@ class Mail:
      把客户信息拼接到话术里
     """
     def __init__(self):
-        self.wb = load_workbook('拒收需发邮件.xlsx')
+        self.wb = load_workbook('到达待取12.8.xlsx')
         self.ws = self.wb.active
         self.number = 2
 
@@ -25,14 +27,14 @@ class Mail:
             contact_email = str(rows[x][3].value)
             nat = str(rows[x][4].value)
             reason = str(rows[x][5].value)
-            messages = str(rows[x][6].value)
+            # messages = str(rows[x][6].value)
             mails.append(number)
             mails.append(order)
             mails.append(name)
             mails.append(contact_email)
             mails.append(nat)
             mails.append(reason)
-            mails.append(messages)
+            # mails.append(messages)
             yield mails
 
     def read_txt(self):
@@ -40,7 +42,7 @@ class Mail:
             with open(f'national_speech/{na[4]}到达代取.txt', 'r', encoding='utf-8') as f:
                 words = f.read().format(na[2], na[0], na[1])
                 self.ws[f'G{self.number}'] = words
-                self.wb.save('到达待取.xlsx')
+                self.wb.save('到达待取12.8.xlsx')
                 self.number += 1
 
 
